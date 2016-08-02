@@ -6,29 +6,29 @@ Este conteúdo é baseado no manual oficial do Bareos, disponível [aqui][doc].
 
 Instalar e habilitar o MariaDB
 ```sh
-# yum install mariadb-server
-# systemctl enable mariadb-server
-# systemctl start mariadb-server
+$ sudo yum install mariadb-server
+$ sudo systemctl enable mariadb-server
+$ sudo systemctl start mariadb-server
 ```
 
 Habilitar o repositório de pacotes extras do Centos
 ```sh
-# yum install epel-release
+$ sudo yum install epel-release
 ```
 
 ## Download
 
 Adicionar o repositório no servidor
 ```sh
-# wget -O /etc/yum.repos.d/bareos.repo http://download.bareos.org/bareos/release/latest/CentOS_7/bareos.repo 
+$ sudo wget -O /etc/yum.repos.d/bareos.repo http://download.bareos.org/bareos/release/latest/CentOS_7/bareos.repo 
 ```
 Agora o Bareos está disponível para instalar via o yum
 ```sh
-# yum install bareos
+$ sudo yum install bareos
 ```
 Usaremos o MariaDB para armazenar as informações do Bareos
 ```sh
-# yum install bareos-database-mysql
+$ sudo yum install bareos-database-mysql
 ```
 
 ## Configuração inicial
@@ -42,24 +42,24 @@ Executar estes scrips para inicializar o banco de dados
 
 Iniciar e habilitar o serviço do Bareos
 ```sh
-# systemctl start bareos-*
-# systemctl enable bareos-*
+$ sudo systemctl start bareos-*
+$ sudo systemctl enable bareos-*
 ```
 
 ## Bareos-webui
 
 ```sh
-# yum install bareos-webui
+$ sudo yum install bareos-webui
 ```
 
 ## Selinux
 A interface web precisa receber permissão para funcionar corretamente
 ```sh
-# setsebool -P httpd_can_network_connect on
+$ sudo setsebool -P httpd_can_network_connect on
 ```
 
 ## Arquivos de configuração
-
+___
 ### Director
 A configuração do bareos-dir fica no arquivo /etc/bareos/bareos-dir.conf.
 Aqui ficam as principais configurações do bareos, como por exemplo definições de:
@@ -144,12 +144,51 @@ Job {
     ClientRunAfterJob = "/var/spool/bareos/mariaclean.sh"
 }
 ```
+___
 ### File daemon
 A configuração do bareos-fd fica no arquivo /etc/bareos/bareos-fd.conf
+```apache
+FileDaemon {
+    Name = cliente-fd
+    Maximun Concurrent Jobs = 20
+}
+```
 
+```apache
+Director {
+    Name = bareos-dir
+    Password = "senhabareos"
+}
+```
+___
 ### Storage daemon
 A configuração do bareos-sd fica no arquivo /etc/bareos/bareos-sd.conf
+```apache
+Storage {
+    Name = cliente-dir
+    Maximum Concurrent Jobs = 20
+}
+```
 
+```apache
+Director {
+    Name = bareos-dir
+    Password = "senhabareos"
+}
+```
+
+```apache
+Device {
+    Name = FileStorage
+    Media Type = File
+    Archive Device = /var/lib/bareos/storage
+    LabelMedia = yes;
+    Random Access = yes;
+    AutomaticMount = yes;
+    RemovableMedia = no;
+    AlwaysOpen = no;
+}
+```
 
    [doc]: <http://doc.bareos.org/master/html/bareos-manual-main-reference.html#x1-250002> 
 
