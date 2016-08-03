@@ -70,12 +70,26 @@ Aqui ficam as principais configurações do bareos, como por exemplo definiçõe
     * conjuntos de arquivos
     * agendamentos de backups
 
+#### Definição do director
+
+```apache
+Director {
+    Name = bareos-dir
+    QueryFile = "/usr/lib/bareos/scripts/query.sql"
+    Maximum Concurrent Jobs = 10
+    Password = "senhadodirector"
+    Messages = Daemon
+    Auditing = yes
+}
+```
+O nome e a senha, definidos nesta seção, devem ser os mesmos valores utilizados no arquivo *bconsole.conf*.
+
 #### Definição de clientes
 Para definir um cliente é necessário especificar 3 parâmetros: Name, Address e Password.
 
 ```apache
 Client {
-    Name = nomedocliente-fd
+    Name = cliente-fd
     Address = 192.168.1.1
     Password = "senhadocliente"
 }
@@ -157,15 +171,16 @@ FileDaemon {
 ```apache
 Director {
     Name = bareos-dir
-    Password = "senhabareos"
+    Password = "senhadocliente"
 }
 ```
+Esta senha deve ser a mesma definida no arquivo *bareos-dir.conf*.
 ___
 ### Storage daemon
 A configuração do bareos-sd fica no arquivo /etc/bareos/bareos-sd.conf
 ```apache
 Storage {
-    Name = cliente-dir
+    Name = cliente-sd
     Maximum Concurrent Jobs = 20
 }
 ```
@@ -189,6 +204,52 @@ Device {
     AlwaysOpen = no;
 }
 ```
+
+### bconsole
+
+```apache
+Director {
+    Name = localhost-dir
+    DIRport = 9101
+    address = localhost
+    Password = "senhadodirector"
+}
+```
+
+## bareos-webui
+
+No arquivo *bareos-dir.conf* é necessário acrescentar as definições da interface web para que a interface funcione de maneira correta.
+
+```apache
+@/etc/bareos/bareos-dir.d/webui-consoles.conf
+@/etc/bareos/bareos-dir.d/webui-profiles.conf
+```
+### webui-consoles
+
+```apache
+Console {
+    Name = user1
+    Password = "senhaweb"
+    Profile = webui
+}
+```
+
+### webui-profiles
+```apache
+Profile {
+    Name = webui
+    CommandACL = status, messages, show, version, run, rerun, cancel, .api, .bvfs_*, list, llist, use, .jobs, .filesets, .clients
+    Job ACL = *all*
+    Schedule ACL = *all*
+    Catalog ACL = *all*
+    Pool ACL = *all*
+    Storage ACL = *all*
+    Client ACL = *all*
+    FileSet ACL = *all*
+    Where ACL = *all*
+}
+```
+
 
    [doc]: <http://doc.bareos.org/master/html/bareos-manual-main-reference.html#x1-250002> 
 
