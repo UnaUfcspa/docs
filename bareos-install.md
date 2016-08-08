@@ -33,7 +33,7 @@ $ sudo yum install bareos-database-mysql
 
 ## Configuração inicial
 
-Executar estes scrips para inicializar o banco de dados
+Executar estes scripts para inicializar o banco de dados
 ```sh
 /usr/lib/bareos/scripts/create_bareos_database 
 /usr/lib/bareos/scripts/make_bareos_tables 
@@ -59,7 +59,7 @@ $ sudo setsebool -P httpd_can_network_connect on
 ```
 
 ## Arquivos de configuração
-___
+
 ### Director
 A configuração do bareos-dir fica no arquivo /etc/bareos/bareos-dir.conf.
 Aqui ficam as principais configurações do bareos, como por exemplo definições de:
@@ -158,7 +158,7 @@ Job {
     ClientRunAfterJob = "/var/spool/bareos/mariaclean.sh"
 }
 ```
-___
+
 ### File daemon
 A configuração do bareos-fd fica no arquivo /etc/bareos/bareos-fd.conf
 ```apache
@@ -175,7 +175,7 @@ Director {
 }
 ```
 Esta senha deve ser a mesma definida no arquivo *bareos-dir.conf*.
-___
+
 ### Storage daemon
 A configuração do bareos-sd fica no arquivo /etc/bareos/bareos-sd.conf
 ```apache

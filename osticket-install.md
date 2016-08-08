@@ -40,8 +40,7 @@ Reloading privilege tables..
  ... Success!
 
 
-By default, a MariaDB installation has an anonymous user, allowing anyo
-ne
+By default, a MariaDB installation has an anonymous user, allowing anyone
 to log into MariaDB without having to have a user account created for
 them.  This is intended only for testing, and to make the installation
 go a bit smoother.  You should remove them before moving into a
@@ -50,10 +49,8 @@ production environment.
 Remove anonymous users? [Y/n] y
  ... Success!
 
-Normally, root should only be allowed to connect from 'localhost'.  Thi
-s
-ensures that someone cannot guess at the root password from the network
-.
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
 
 Disallow root login remotely? [Y/n] y
  ... Success!
@@ -83,7 +80,8 @@ Thanks for using MariaDB!
 [user@localhost ~]$
 ```
 
-Verifique se o horário do servidor já está corretamente configurado com a timezone correta e também se o **ntp** está instalado.
+Verifique se o horário do servidor já está corretamente configurado com
+a timezone correta e também se o **ntp** está instalado.
 
 ```sh
 [user@localhost ~]$ timedatectl
@@ -102,7 +100,9 @@ NTP synchronized: yes
                   Sat 2016-10-15 23:59:59 BRT
                   Sun 2016-10-16 01:00:00 BRST
 ```
-A configuração da timezone correta é realizada pelo arquivo */etc/localtime*. Realizar um backup do arquivo original não é necessário, mas é uma boa ideia.
+A configuração da timezone correta é realizada pelo arquivo
+*/etc/localtime*. Realizar um backup do arquivo original não é necessário,
+mas é uma boa ideia.
 
 ```sh
 [user@localhost ~]$ sudo cp /etc/localtime /etc/localtime.backup
@@ -139,11 +139,26 @@ date.timezone = "America/Sao_Paulo"
 ```sh
 [user@localhost ~]$ sudo systemctl restart httpd
 ```
+
+## Configurando o SELinux
+
+Para que tudo funcione corretamente com o SELinux ativo é necessário que
+ativemos algumas de suas *flags* de operação relativas ao **httpd**.
+
+```sh
+[user@localhost ~]$ sudo setsebool -P httpd_can_sendmail 1
+[user@localhost ~]$ sudo setsebool -P httpd_can_network_connect 1
+[user@localhost ~]$ sudo setsebool -P httpd_read_user_content 1
+[user@localhost ~]$ sudo setsebool -P httpd_unified 1
+```
+
+## Download dos arquivos do OSTicket
+
 Instalar o Unzip
 ```sh
 [user@localhost ~]$ sudo yum install unzip
 ```
-## Download dos arquivos do OSTicket
+Os arquivos devem ser obtidos diretamente no site oficial do OSTicket.
 
 ```sh
 [user@localhost ~]$ cd /var/www/html 
