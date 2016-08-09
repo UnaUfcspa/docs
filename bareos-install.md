@@ -7,16 +7,15 @@ Este conteúdo é baseado no manual oficial do Bareos, disponível [aqui][doc].
 Instalar e habilitar o MariaDB
 ```sh
 $ sudo yum install mariadb-server
-$ sudo systemctl enable mariadb-server
-$ sudo systemctl start mariadb-server
-```
-
-Habilitar o repositório de pacotes extras do Centos
-```sh
-$ sudo yum install epel-release
+$ sudo systemctl enable mariadb
+$ sudo systemctl start mariadb
 ```
 
 ## Download
+
+```sh
+$ sudo yum install wget
+```
 
 Adicionar o repositório no servidor
 ```sh
@@ -35,18 +34,32 @@ $ sudo yum install bareos-database-mysql
 
 Executar estes scripts para inicializar o banco de dados
 ```sh
-/usr/lib/bareos/scripts/create_bareos_database 
-/usr/lib/bareos/scripts/make_bareos_tables 
-/usr/lib/bareos/scripts/grant_bareos_privileges
+$ sudo /usr/lib/bareos/scripts/create_bareos_database 
+$ sudo /usr/lib/bareos/scripts/make_bareos_tables 
+$ sudo /usr/lib/bareos/scripts/grant_bareos_privileges
 ```
 
 Iniciar e habilitar o serviço do Bareos
 ```sh
-$ sudo systemctl start bareos-*
-$ sudo systemctl enable bareos-*
+$ sudo systemctl start bareos-dir
+$ sudo systemctl start bareos-sd
+$ sudo systemctl enable bareos-dir
+$ sudo systemctl enable bareos-sd
 ```
 
 ## Bareos-webui
+
+Habilitar o repositório de pacotes extras do Centos
+```sh
+$ sudo yum install epel-release
+```
+httpd instalado?
+```sh
+[user@localhost ~]$ sudo firewall-cmd --zone=public --add-port=http/tcp
+[user@localhost ~]$ sudo firewall-cmd --zone=public --add-port=http/tcp --permanent
+sudo systemctl start httpd
+sudo systemctl enable httpd
+```
 
 ```sh
 $ sudo yum install bareos-webui
