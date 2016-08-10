@@ -1,5 +1,22 @@
-# Configuração de usuários
+Setup inicial de um servidor
+============================
 
+Este documento é uma coleção de dicas para tornar mais facil e padronizada a tarefa de entregar um
+servidor novo para o ambiente de produção.
+Tudo que está descrito aqui é baseado no **CentOS 7**, mas apesar disto as ideias apresentas são relevantes 
+para a maior parte das distribuições atuais.
+
+Indice
+------
+    - [Adicionar usuários](#adidionar-usuários)
+    - [sshd](#sshd)
+    - [Atualização do sistema](#atalização-do-sistema)
+    - [SELinux](#selinux)
+    - [Horário](#configurar-o-horário)
+    - [Firefall](#firewall)
+    - [Hostname](#hostname)
+
+# Adicionar usuários
 
 ```sh
 [root@localhost /]# useradd user -g wheel -p<senha>
@@ -36,7 +53,7 @@ Aug 02 11:01:19 localhost.localdomain sshd[1385]: Server listening on 0.0.0.0 po
 Aug 02 11:01:19 localhost.localdomain sshd[1385]: Server listening on :: port 1234.
 ```
 
-> *Atenção*: Ao mudar as configurações do *sshd* certifique-se de que você consegue estabelecer
+> **Atenção**: Ao mudar as configurações do *sshd* certifique-se de que você consegue estabelecer
 > uma nova conexão antes de fechar a atual.
 
 # Atualização do sistema
@@ -44,7 +61,7 @@ Aug 02 11:01:19 localhost.localdomain sshd[1385]: Server listening on :: port 12
 ```sh
 [user@localhost ~]$ sudo yum update
 ```
-# Verificando o status do SELinux
+# SELinux
 
 Verificando que o *SELinux* está ativo e no modo *enforcing* não há nada mais para fazer.
 ```sh
@@ -142,7 +159,7 @@ public (default)
   interfaces:
   sources:
   services: dhcpv6-client ssh
-  ports: 9103/tcp 9101/tcp
+  ports: 
   masquerade: no
   forward-ports:
   icmp-blocks:
