@@ -15,6 +15,7 @@ Indice
     - [Horário](#configurar-o-horário)
     - [Firefall](#firewall)
     - [Hostname](#hostname)
+    - [fail2ban](#fail2ban)
 
 # Adicionar usuários
 
@@ -206,3 +207,32 @@ Depois de realizar as configurações basta apenas reiniciar o *network*.
 ```
 # Log rotate
 # fail2ban
+
+```sh
+[user@localhost ~]$ sudo yum install fail2ban-firewalld fail2ban-systemd
+[user@localhost ~]$ sudo /etc/fail2ban/jail.local /etc/fail2ban/jail.local
+```
+
+Todas as configurações devem ser realizadas no arquivo */etc/fail2ban/jail.local*
+
+```apache
+[DEFAULT]
+bantime = 3600
+[sshd]
+enabled = true
+```
+> **Atenção**: Se você deseja proteger um serviço que está sendo executado em uma porta diferente da padrão
+> esta configuração deve estar presente na configuração do *fail2ban*.
+
+```sh
+[user@localhost ~]$ sudo systemctl enable fail2ban
+Created symlink from /etc/systemd/system/multi-user.target.wants/fail2ban.service to /usr/lib/systemd/system/fail2ban.service.
+[user@localhost ~]$ sudo systemctl status fail2ban
+● fail2ban.service - Fail2Ban Service
+   Loaded: loaded (/usr/lib/systemd/system/fail2ban.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2016-08-11 09:25:44 BRT; 18min ago
+     Docs: man:fail2ban(1)
+ Main PID: 49163 (fail2ban-server)
+   CGroup: /system.slice/fail2ban.service
+           └─49163 /usr/bin/python2 -s /usr/bin/fail2ban-server -s /var/run/fail2ban/fail2ban.sock -p /var/run/fail2ban/fail2ban.pid -x -b
+```
