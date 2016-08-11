@@ -8,22 +8,22 @@ para a maior parte das distribuições atuais.
 
 Indice
 ------
-    - [Adicionar usuários](#adidionar-usuários)
-    - [sshd](#sshd)
-    - [Atualização do sistema](#atalização-do-sistema)
-    - [SELinux](#selinux)
-    - [Horário](#configurar-o-horário)
-    - [Firefall](#firewall)
-    - [Hostname](#hostname)
-    - [fail2ban](#fail2ban)
+  - [Adicionar usuários](#adicionar-usuários)
+  - [sshd](#sshd)
+  - [Atualização do sistema](#atualização-do-sistema)
+  - [SELinux](#selinux)
+  - [Horário](#configurar-o-horário)
+  - [Firefall](#firewall)
+  - [Hostname](#hostname)
+  - [fail2ban](#fail2ban)
 
-# Adicionar usuários
+## Adicionar usuários
 
 ```sh
 [root@localhost /]# useradd user -g wheel -p<senha>
 ```
 
-# sshd
+## sshd
 
 Dependendo da configuração do *sshd* é possível que você não consiga realizar login via ssh utilizando o usuário recém criado.
 Neste caso, em geral, basta adicionar o novo usuário no arquivo de configuração do *sshd* para que o problema seja resolvido.
@@ -57,12 +57,12 @@ Aug 02 11:01:19 localhost.localdomain sshd[1385]: Server listening on :: port 12
 > **Atenção**: Ao mudar as configurações do *sshd* certifique-se de que você consegue estabelecer
 > uma nova conexão antes de fechar a atual.
 
-# Atualização do sistema
+## Atualização do sistema
 
 ```sh
 [user@localhost ~]$ sudo yum update
 ```
-# SELinux
+## SELinux
 
 Verificando que o *SELinux* está ativo e no modo *enforcing* não há nada mais para fazer.
 ```sh
@@ -113,7 +113,7 @@ reiniciado para que ele possa criar as labels necessárias.
 A melhor estratégia para habilitar o *SELinux* em um servidor de produção é primeiro coloca-lo no modo *permissive*
 e resolver os problemas de permissões e somente depois que estiver tudo resolvido mudar para o modo *enforcing*.
 
-# Configurar o horário
+## Configurar o horário
 
 Verifique se o horário do servidor já está corretamente configurado com
 a timezone correta e também se o **ntp** está instalado.
@@ -150,7 +150,7 @@ O **ntpd** pode ser instalado diretamente pelo *yum*.
 [user@localhost ~]$ sudo systemctl enable ntpd
 [user@localhost ~]$ sudo systemctl restart ntpd
 ```
-# Firewall
+## Firewall
 
 Verifique se o firewall está devidamente instalado e configurado no servidor.
 
@@ -179,7 +179,7 @@ Aug 02 11:01:09 localhost.localdomain systemd[1]: Starting firewalld...
 Aug 02 11:01:11 localhost.localdomain systemd[1]: Started firewalld ...
 Hint: Some lines were ellipsized, use -l to show in full.
 ```
-# Hostname
+## Hostname
 
 A configuração do hostname do servidor pode ser realizada através dos arquivos */etc/sysconfig/network*
 e */etc/hosts*.
@@ -205,8 +205,8 @@ Depois de realizar as configurações basta apenas reiniciar o *network*.
    Active: active (exited) since Tue 2016-08-02 11:01:19 BRT; 1 weeks 1 days ago
      Docs: man:systemd-sysv-generator(8)
 ```
-# Log rotate
-# fail2ban
+## Log rotate
+## fail2ban
 
 ```sh
 [user@localhost ~]$ sudo yum install fail2ban-firewalld fail2ban-systemd
