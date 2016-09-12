@@ -8,7 +8,7 @@ infraenstrutura e ideias gerais para a boa manutenção dos serviços independen
 específica.
 
 Atualmente estes são os *manuais* que estão disponíveis:
-- [Procedimentos iniciais em um servidor](server-setup.md)
-- [Instalação do OSTicket](osticket-install.md)
-- [Instalação do cliente do Bareos](bareos/client-install.md)
+- [Procedimentos iniciais em um servidor](https://github.com/UnaUfcspa/docs/blob/master/server-setup.md)
+- [Instalação do OSTicket](https://github.com/UnaUfcspa/docs/blob/master/osticket-install.md)
+- [Instalação do cliente do Bareos](https://github.com/UnaUfcspa/docs/blob/master/bareos/client-install.md)
 
