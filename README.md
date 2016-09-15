@@ -10,5 +10,8 @@ específica.
 Atualmente estes são os *manuais* que estão disponíveis:
 - [Procedimentos iniciais em um servidor](https://github.com/UnaUfcspa/docs/blob/master/server-setup.md)
 - [Instalação do OSTicket](https://github.com/UnaUfcspa/docs/blob/master/osticket-install.md)
-- [Instalação do cliente do Bareos](https://github.com/UnaUfcspa/docs/blob/master/bareos/client-install.md)
+- [Instalação do Moodle 3.1](https://github.com/UnaUfcspa/docs/blob/master/moodle.md)
+- Bareos
+  - [Instalação do cliente do Bareos](https://github.com/UnaUfcspa/docs/blob/master/bareos/client-install.md)
+  - [Realizando restore de arquivos](https://github.com/UnaUfcspa/docs/blob/master/bareos/restore.md)
 
