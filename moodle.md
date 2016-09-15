@@ -69,3 +69,7 @@ sudo yum install php-pecl-apc php-xmlrpc
 sudo yum install php-mysql phpmyadmin
 ```
 
+```sh
+sudo yum install php php-mysql php-mbstring php-gd php-dom php-xmlrpc php-soap php-intl
+```
+
