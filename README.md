@@ -7,11 +7,12 @@ Durante a criação destes documentos tentou-se encontar um equilibrio entre a e
 infraenstrutura e ideias gerais para a boa manutenção dos serviços independente da infraestrutura
 específica.
 
-Atualmente estes são os *manuais* que estão disponíveis:
+Atualmente estes são os documentos que estão disponíveis:
 - [Procedimentos iniciais em um servidor](https://github.com/UnaUfcspa/docs/blob/master/server-setup.md)
 - [Instalação do OSTicket](https://github.com/UnaUfcspa/docs/blob/master/osticket-install.md)
 - [Instalação do Moodle 3.1](https://github.com/UnaUfcspa/docs/blob/master/moodle.md)
+- [Configuração de uma unidade de disco externa](https://github.com/UnaUfcspa/docs/blob/master/storage.md)
 - Bareos
-  - [Instalação do cliente do Bareos](https://github.com/UnaUfcspa/docs/blob/master/bareos/client-install.md)
+  - [Instalação do director](https://github.com/UnaUfcspa/docs/blob/master/bareos/director-install.md)
+  - [Instalação do cliente](https://github.com/UnaUfcspa/docs/blob/master/bareos/client-install.md)
   - [Realizando restore de arquivos](https://github.com/UnaUfcspa/docs/blob/master/bareos/restore.md)
-
