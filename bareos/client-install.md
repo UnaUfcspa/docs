@@ -1,4 +1,4 @@
-# Instalação do Cliet do Bareos(bareos-fd) 15.2.2
+# Instalação do Client do Bareos(bareos-fd) 15.2.2
 
 ## Download
 

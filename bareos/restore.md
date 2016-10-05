@@ -6,6 +6,8 @@ utilizando o **BAREOS**.
 O restore pode ser feito tanto pelo console como por sua interface web. Aqui abordaremos
 a segunda alternativa porque ela é mais simples.
 
+![Exemplo da interface web](https://raw.githubusercontent.com/UnaUfcspa/docs/master/bareos/restore.png)
+
 Na aba *restore* existem várias opções que podem tornar o trabalho de restore bastante
 flexível.
 
