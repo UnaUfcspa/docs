@@ -3,7 +3,7 @@ Setup inicial de um servidor
 
 Este documento é uma coleção de dicas para tornar mais facil e padronizada a tarefa de entregar um
 servidor novo para o ambiente de produção.
-Tudo que está descrito aqui é baseado no **CentOS 7**, mas apesar disto as ideias apresentas são relevantes 
+Tudo que está descrito aqui é baseado no **CentOS 7**, mas apesar disto as ideias apresentas são relevantes
 para a maior parte das distribuições atuais.
 
 Indice
@@ -15,6 +15,7 @@ Indice
   - [Horário](#configurar-o-horário)
   - [Firefall](#firewall)
   - [Hostname](#hostname)
+  - [Monitoramento](#telegraf)
   - [fail2ban](#fail2ban)
 
 ## Adicionar usuários
@@ -192,7 +193,7 @@ HOSTNAME=hostname.com.br
 
 ```apache
 # Arquivo /etc/hosts
-127.0.0.1   hostname hostname.com.br 
+127.0.0.1   hostname hostname.com.br
 ::1         hostname hostname.com.br
 ```
 
@@ -205,6 +206,19 @@ Depois de realizar as configurações basta apenas reiniciar o *network*.
    Active: active (exited) since Tue 2016-08-02 11:01:19 BRT; 1 weeks 1 days ago
      Docs: man:systemd-sysv-generator(8)
 ```
+## Monitoramento
+
+Para a coleta de estatísticas nós utilizamos o Telegraf, ele pode ser instalado
+utilizando os seguintes comandos:
+
+```sh
+wget https://dl.influxdata.com/telegraf/releases/telegraf-1.5.0-1.x86_64.rpm
+sudo yum localinstall telegraf-1.5.0-1.x86_64.rpm
+```
+
+É recomendável verificar no site [oficial](https://portal.influxdata.com/downloads)
+se existe uma versão mais recente no momento da instalação.
+
 ## Log rotate
 ## fail2ban
 
